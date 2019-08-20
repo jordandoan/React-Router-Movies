@@ -17,21 +17,22 @@ const MovieList = props => {
     }
     
     getMovies();
-  }, [props.match.params.id]);
+  }, []);
   
   return (
 
     <div className="movie-list">
       {movies.map(movie => (
-        <div key={movie.id}>
-          <Link to={`/movies/${movie.id}`}>
+        <div onClick={()=>{handleEvent(props,movie)}} key={movie.id}>
           <MovieCard movie={movie}/>
-          </Link>
         </div>
       ))}
     </div>
   );
 }
 
+function handleEvent(props,movie) {
+  props.history.push(`/movies/${movie.id}`);
+}
 
 export default MovieList;
